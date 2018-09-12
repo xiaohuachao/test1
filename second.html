@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text"  id="text1" placeholder="请输入数字"/>
+		<input type="text"  id="text2" placeholder="请输入数字"/>
+		<input type="text"  id="text3" />
+		<input type="button"  id="btn" value="生成" />
+		<input type="button"  id="btn1" value="排序" />
+		<input type="button"  id="btn2" value="去重" />
+	</body>
+	<script type="text/javascript">
+		var obtn = document.getElementById("btn");
+		var obtn1 = document.getElementById("btn1");
+		var obtn2 = document.getElementById("btn2")
+		var otxt3 = document.getElementById("text3");
+		var arr=[];
+		obtn.onclick = function(){
+			var op = document.createElement('p')
+			var otxt1 = parseInt(document.getElementById("text1").value)
+			var otxt2 = parseInt(document.getElementById("text2").value)
+			otxt3.value = Math.abs(otxt1-otxt2)+1
+			if (otxt1>otxt2) {
+				var ls = otxt1;
+				otxt1 = otxt2;
+				otxt2 =  ls;
+			}
+			for (var i=otxt2;i>=otxt1;i--) {
+				arr.push(i)
+			}
+			op.innerHTML = arr;
+			document.body.appendChild(op)
+			document.getElementById("text1").value = '';
+			document.getElementById("text2").value = ''
+			obtn1.onclick = function(){
+				arr.sort(fn)
+				function fn(a,b){
+					return a-b;
+				}
+				var op1 = document.createElement('p')
+				op1.innerHTML = arr;
+				document.body.appendChild(op1)
+			}
+			obtn2.onclick = function(){
+				var newArr = []
+				for (var i=0;i<arr.length;i++) {
+					if (newArr.indexOf(arr[i]) == -1) {
+						newArr.push(arr[i])
+					}
+				}
+				var op = document.createElement('p')
+				op.innerHTML = newArr;
+				document.body.appendChild(op)
+			}
+		}
+	</script>
+</html>
